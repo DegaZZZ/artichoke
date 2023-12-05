@@ -6,6 +6,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <meta property="og:title" content="{{ deck_name }}" />
+    <meta property="og:description" content="{{ deck_code }}" />
+    <meta property="og:url" content="http://artichoke.fi/deck/{{ deck_code }}" />
+    <meta property="og:image" content="https://www.pcgamesn.com/wp-content/sites/pcgamesn/2018/03/artifact-art.jpg" />
     <title>Artifact Decks</title>
 </head>
 <body>

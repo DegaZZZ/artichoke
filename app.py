@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from DeckDecoder import DeckDecoder, DeckDecodingException
+from opengraph_gen import create_open_graph_image
 import json
 
 app = Flask(__name__)
@@ -86,7 +87,8 @@ def deck_detail(deck_code):
         deck = DeckDecoder.decode(deck_code)
     except DeckDecodingException as e:
         return "What the actual fuck is this deck?"
-
+    
+    
     heroes_deck = deck['heroes']
     cards_deck = deck['cards']
     deck_name = deck['name']
@@ -97,6 +99,12 @@ def deck_detail(deck_code):
         for card in hero_cards:
             if hero['card_id'] == card['card_id']:
                 heroes.append(card)
+
+    heroes_images = []
+    for hero in heroes:
+        heroes_images.append(hero['large_image']['default'])
+
+    create_open_graph_image(heroes_images, f'open_graphs/{deck_code}')
 
     item_cards_data = []
     for card in cards_deck:
