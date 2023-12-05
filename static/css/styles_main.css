@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background-color: #0e0c10; /* Dark background for dark mode */
+    color: #ffffff;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .title, .subtitle {
+    text-align: center;
+    color: #f0f0f0;
+  }
+  
+  .title {
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    margin-bottom: 30px;
+  }
+  
+  .deck {
+    background-color: #1e1e1e;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+  }
+  
+  .deck:hover {
+    transform: translateY(-5px);
+  }
+  
+  .deck-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .deck-heroes {
+    display: flex;
+  }
+  
+  .hero-image {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f0f0f0; /* Placeholder for images */
+    margin-right: 5px;
+    border-radius: 3px;
+  }
+  
+  .deck-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .info {
+    background-color: #333;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .deck-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .deck-info {
+      justify-content: flex-start;
+    }
+  }
+  
+  /* New styles for clickable decks */
+.deck-link {
+    text-decoration: none; /* Removes the underline from links */
+    color: inherit; /* Ensures the text color is inherited */
+    display: block; /* Makes the entire area clickable */
+  }
+  
+  .deck-link:hover .deck {
+    background-color: #262626; /* Darker background on hover for interaction feedback */
+    cursor: pointer; /* Changes the cursor to indicate it's clickable */
+  }
+
+  .deck-title {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .deck-name {
+    font-size: 1.5em;
+    color: #cccccc; /* Bright accent color */
+    margin-right: 5px;
+  }
+
+  .deck-author {
+    font-size: 1.2em; /* Smaller font size than the deck name */
+    color: #107e78; /* Different color for the author's name */
+  }
