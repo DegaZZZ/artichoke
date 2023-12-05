@@ -2,7 +2,7 @@ from PIL import Image
 from io import BytesIO
 import requests
 
-def create_open_graph_image(image_urls, output_path):
+def create_open_graph_image(image_urls):
     # Function to fetch and resize an image from a URL
     def fetch_and_resize_image(url, size):
         response = requests.get(url)
@@ -44,4 +44,4 @@ def create_open_graph_image(image_urls, output_path):
             base_image.paste(img, pos)
 
     # Save the final image
-    base_image.save(output_path)
+    return base_image
