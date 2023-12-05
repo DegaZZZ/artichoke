@@ -22,7 +22,7 @@ def create_open_graph_image(image_urls):
     total_spacing_width = spacing * (image_count - 1)
     content_width = total_image_width + total_spacing_width
 
-    aspect_ratio = 16 / 9
+    aspect_ratio = 1200 / 630
     base_height = int(content_width / aspect_ratio)
     base_height += 100  # Add padding to the height
     base_width = int(base_height * aspect_ratio)
