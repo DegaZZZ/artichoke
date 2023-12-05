@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from DeckDecoder import DeckDecoder, DeckDecodingException
 from opengraph_gen import create_open_graph_image
 import json
+import binascii
 
 app = Flask(__name__)
 
@@ -86,6 +87,8 @@ def deck_detail(deck_code):
     try :
         deck = DeckDecoder.decode(deck_code)
     except DeckDecodingException as e:
+        return "What the actual fuck is this deck?"
+    except binascii.Error as b:
         return "What the actual fuck is this deck?"
     
     
