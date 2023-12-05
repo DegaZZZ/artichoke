@@ -2,18 +2,47 @@ from flask import Flask, render_template, send_file
 from DeckDecoder import DeckDecoder, DeckDecodingException
 from opengraph_gen import create_open_graph_image
 import json
-import binascii
 import io
+import binascii
 
 app = Flask(__name__)
 
 # Dummy data - replace with your database logic
 decks = [
-    {"id": 1, "name": "Deck One", "code": "ADCJQUQI30zuwEYg2ABeF1Bu94BmWIBTEkLtAKlAZakAYmHh0JsdWUvUmVkIEV4YW1wbGU_", "colors": "Blue, Red", "avg_mana": "2.5", "type": "Aggro"},
-    {"id": 2, "name": "Deck One", "cost": "Low", "colors": "Blue, Red", "avg_mana": "2.5", "type": "Aggro"},
-    {"id": 3, "name": "Deck One", "cost": "Low", "colors": "Blue, Red", "avg_mana": "2.5", "type": "Aggro"},
-    {"id": 4, "name": "Deck One", "cost": "Low", "colors": "Blue, Red", "avg_mana": "2.5", "type": "Aggro"},
-    {"id": 5, "name": "Deck One", "cost": "Low", "colors": "Blue, Red", "avg_mana": "2.5", "type": "Aggro"},
+    {"id": 1, "author": "Valve", "code": "ADCJQUQI30zuwEYg2ABeF1Bu94BmWIBTEkLtAKlAZakAYmHh0JsdWUvUmVkIEV4YW1wbGU_"},
+    {"id": 2, "author": "degaz", "code": "ADCJUoIPrgCScMEldUFq7sCWaEBkEOBjIRVgQOMpANSaXggUm9sbA__"},
+    {"id": 30, "author": "kompot", "code": "ADCJcwEJLkCCg5Mjbi7AoSpAZNiAUGDcgFyAQoKiCQBbwGI0YDQtA__"},
+    {"id": 3, "code": "ADCJcUiL7kCQYsNCbhdgXfdAUqrAZqfpQNIhI9oAXIBWyBCbHVlIC8gR3JlZW4gXSBIWVBFRCBXaW5uZXIgRGVjaw__"},
+    {"id": 4, "code": "ADCJcYbKrkCBYwNSbC7AkqCaQFaXENBTyIBswGIk2gBcgFbRHVhbC1VR10gVGh1bmRlcmNoYWQgQ29tYm8_"},
+    {"id": 5, "author": "Slacks", "code": "ADCJdYSLrkCjUMTBKq7AhCZRg6XAZ6LrAF3AaMBA42IQVJDQU5FICBBU1MtU0FMVCAy"},
+    {"id": 6, "author": "Slacks", "code": "ADCJQATcbgCnAMMDnq7ApqCiEevARSIQUccuQG4AZdIb3N0YWdlIFNpdHVhdGlvbiEh"},
+    {"id": 7, "author": "Slacks", "code": "ADCJWsPJX2xvAEFQQmjuwKYrQKBVIEZRBW-AaQBF02TQWkgUElULXkgdGhlIEZPTw__"},
+    {"id": 8, "author": "Slacks", "code": "ADCJZgbabkCCweKBWS9AkFIRUMDQYZFggJBAhCCAQEfAxNJbnRlcmVzdGluZyBJbXByb3ZlbWVudHMgdjI_"},
+    {"id": 9, "author": "Slacks", "code": "ADCJU8OtLgCGgJEBzq7AmsBVEaGSwSUlJiCbQF1AYZ0AYdLRUVQTyBEQSBNRUVQTw__"},
+    {"id": 10, "author": "Slacks", "code": "ADCJS8bJLkChEUBJwGnuwJHAYKHCo2EgWcCQoFyASEFSE1vbm8gUmVkIE9vcHMhIEFsbCBDcmVlcHMgMg__"},
+    {"id": 11, "author": "Slacks", "code": "ADCJckMMbgCHYFWELe7AoEnAhWJixOZNQFChJ+FC7oBAU1SIFRPU1NFUiEhIQ__"},
+    {"id": 12, "author": "Slacks", "code": "ADCJeMWL7kCBYJFAaO7Api+AYxYgRlEFb8BpAFkAZNBUGl0IEZpZ2h0ZXIgZm9yIFNsYWNrcw__"},
+    {"id": 13, "author": "Slacks", "code": "ADCJdgLYbkCBoITA766Ao2LjbIBg4FlAUdLQSUBvAGGpAJSQVZFTiBTSE9PSw__"},
+    {"id": 14, "author": "Slacks", "code": "ADCJfYOPrgCTAQRgye7AlWIj6UBjYSUgolGngi3Ah+vAVJJWC1ZIEJVSVNORVNT"},
+    {"id": 15, "author": "Slacks", "code": "ADCJaIUIbkCSBeCD629AoSHR4GGgoGCE1OjAYJST09NIEZPUiBJTVBST1ZFTUVOVA__"},
+    {"id": 16, "author": "Slacks", "code": "ADCJbsPIH2qvAESBkN6uwKckoRTikeNEUEBAQevApeVilRIRSBMT05HIEhBVUwgMg__"},
+    {"id": 17, "code": "ADCJcURIH0De7sBKAGQeF1BQWbdAVhHRwFIMQIECG0CTgIfRlBCdQFSZWQtR3JlZW4gQnJhd2xlcg__"},
+    {"id": 18, "code": "ADCJSY6NrgCWQyTAy29ApKeQUFDoQOIRCIBgpORlI1Td2ltJmFwb3M7cyA0My1jYXJkIG1vbm9ibHVlICsgR1VJREUgKFdpbm5pbmcgRGVjayBvZiBNV0Mp"},
+    {"id": 19, "code": "ADCJcsMNrgCWRCMPQ6muwKrAoGUl4FSQXoCkaMCBYaOUk9MTElOIFNUT1JN"},
+    {"id": 20, "code": "ADCJckgrbkCARFLC6a7AoGFjJuoArEBgVQhAYcNglJlZC9CbGFjayAtIHBlcmZlY3Qgc3RhcnRlciBkZWNr"},
+    {"id": 21, "code": "ADCJZwPNrgCF06WBLhdoN4Bm0FGZQGfElGhAkF1AUakAUpSZWQgQmx1ZSBCdWRnZXQ_"},
+    {"id": 22, "code": "ADCJekMNrgCGI1WBHi7AlsaUlCOgUExAXIBgYi7AXIBgVJlZCBCbHVlIDMuMA__"},
+    {"id": 23, "code": "ADCJYEQPrgCAhBElDhdAUEl3QEBUEYFAQsPCAoDTUEBC0sKAwNCAQEBAgEBAQICQQEBAQQLAQEFRAECBAECJQEEFQoNCwcDBYUBAw4HR3JlZW4gUmFtcCBjaGVhcA__"},
+    {"id": 24, "code": "ADCJQoZJrkCCI1WBHi7AltBBpNSXEKBMgEErgEBSAsiAQ5yAYFHTklLIC0gIENvbnRyb2wvQWdncm8gNS0w"},
+    {"id": 25, "code": "ADCJfcSNrgCWQyVAThdQrDdARBlAiABUpATJgGJSKYBgoQBX5SBQnVkZ2V0IE1vbm9ibHVlIHYy"},
+    {"id": 26, "code": "ADCJbgPMbgCBWUBlQE4XUKw3QEQZQIgAVKQEyYBia4BgoQBX5SBQnVkZ2V0IE1vbm9ibHVl"},
+    {"id": 27, "code": "ADCJSwUfrgCCQ2LDGC7AoaGSoVVQaABOAFBAgNMR1+mAUJvQkQgQmVubnkgQnVmZm5hc3Np"},
+    {"id": 28, "code": "ADCJcQQL7kCQQsNibhduN0BSqsBml6BMgGzAUiEj2gBMgFCbHVlL0dyZWVuIEJydW1h"},
+    {"id": 29, "code": "ADCJRwSJX2Dc7wBEAN4XUFBcN0BQmQBQWABRCgBCgN0AWUBbQFDbwEISEJsdWUtQmxhY2sgQ29udHJvbA__"},
+]
+
+deck_codes = [
+    "ADCJQUQI30zuwEYg2ABeF1Bu94BmWIBTEkLtAKlAZakAYmHh0JsdWUvUmVkIEV4YW1wbGU_", "ADCJbYiZLkCwQTBBQinAWe7ApGbqAICQXIBuQGNl2QBIAFIVmluS2Vsc2llcidzIFJpc2luZyBBbmdlciBtb25vIHJlZA__"
 ]
 
 with open('card_set_1.json', encoding='utf-8') as json_file:
@@ -80,7 +109,67 @@ for card in card_list_0:
 
 @app.route('/')
 def index():
-    return render_template('index.html', decks=decks)
+
+    parsed_decks = []
+
+    for deck_temp in decks:
+        try :
+            deck = DeckDecoder.decode(deck_temp.get('code'))
+        except DeckDecodingException as e:
+            return "Something wrong just happened"
+        except binascii.Error as b:
+            return "Something wrong just happened" 
+        
+        heroes_deck = deck['heroes']
+        cards_deck = deck['cards']
+
+        item_cards_data = []
+        for card in cards_deck:
+            for item in item_cards:
+                if card['card_id'] == item['card_id']:
+                    item_cards_data.append({'card_id': item['card_id'], 'card_name': item['card_name']['english'], 'count': card['count'], 'gold_cost': item['gold_cost'], 'mini_image': item['mini_image']['default']})
+
+        #Total amount of item_cards (sum of counts)
+        total_item_cards = 0
+        for item in item_cards_data:
+            total_item_cards += item['count']
+
+        #Get all heroes in a deck
+        heroes = []
+        for hero in heroes_deck:
+            for card in hero_cards:
+                if hero['card_id'] == card['card_id']:
+                    heroes.append(card)
+
+        heroes_images = []
+        for hero in heroes:
+            heroes_images.append(hero['mini_image']['default'])
+
+        # Get deck name
+        deck_name = deck['name']
+
+        # Get deck author
+        deck_author = deck_temp.get('author')
+
+        # Get unique colours in deck
+        colours = []
+        for hero in heroes:
+            if 'is_blue' in hero:
+                colours.append('blue')
+            elif 'is_red' in hero:
+                colours.append('red')
+            elif 'is_black' in hero:
+                colours.append('black')
+            elif 'is_green' in hero:
+                colours.append('green')
+        colours = list(set(colours))
+        colours = ', '.join(colours)
+
+
+
+        parsed_decks.append({'deck_code': deck_temp.get('code'), 'author': deck_author, 'colours': colours, 'deck_name': deck_name, 'heroes': heroes_images, 'item_count': total_item_cards})
+
+    return render_template('index.html', decks=parsed_decks)
 
 @app.route('/deck-preview/<deck_code>')
 def deck_preview(deck_code):

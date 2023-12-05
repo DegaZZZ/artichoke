@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCG Decks Glossary</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles_main.css') }}">
+</head>
+<body>
+<div class="container">
+  <h1 class="title">Artichoke</h1>
+  <h2 class="subtitle">Artifact Classic Decks</h2>
+
+  {% for deck in decks %}
+    <a href="{{ url_for('deck_detail', deck_code=deck.deck_code) }}" class="deck-link">
+      <div class="deck" id="deck{{ deck.id }}">
+        <div class="deck-header">
+          <div class="deck-title">
+            <span class="deck-name">{{ deck.deck_name }}</span>
+            {% if deck.author %}
+                <span class="deck-author">by {{ deck.author }}</span>
+            {% endif %}
+          </div>
+          <div class="deck-heroes">
+            {% for hero in deck.heroes %}
+              <div class="hero-image" style="background-image: url('{{ hero }}');"></div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="deck-info">
+          <span class="info">Colors: {{ deck.colours }}</span>
+          <span class="info">{{ deck.item_count }} Items</span>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+  
+</div>
+</body>
+</html>
