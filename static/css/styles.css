@@ -1,0 +1,329 @@
+body {
+    background-image: url('../images/styles/PageBG.jpg');
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding-bottom: 20px;
+    display: block;
+    background-color: #0e0c10;
+    background-attachment: fixed;
+  }
+
+#ArtiShockHeader {
+    position: relative;
+    width: 100%;
+    background-color: black;
+    box-shadow: 0 10px 50px black;
+    z-index: 1;
+    border-bottom: 2px solid black;
+}
+
+#ArtiShockInnerHeader {
+    position: relative;
+    margin: 0 auto;
+    padding-left: 150px;
+    width: 950px;
+    background-image: url('SiteHeaderButtonActive_175px.jpg');
+    background-position: center left;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.SiteHeaderButton {
+    height: 50px;
+    width: 175px;
+    border-right: 2px solid black;
+    font-family: 'Radiance',sans-serif;
+    color: #dcd;
+    font-size: 16pt;
+    font-weight: bold;
+    padding-top: 10px;
+    text-align: center;
+    transform: skew(-30deg);
+    cursor: pointer;
+    float: left;
+}
+
+.SiteHeaderButtonUnselected {
+    background-color: rgba(150,43,222,0.05);
+    text-shadow: 0 0 30px black, 0 0 20px black;
+}
+
+.SiteHeaderButtonSelected {
+    background-color: rgba(65, 46, 77, 0.45);
+    background-image: url('SiteHeaderButtonActive_175px.jpg');
+    text-shadow: 0 0 30px black, 0 0 20px black;
+    height: 50px;
+    padding-top: 10px;
+    color: #ccd;
+}
+.SiteHeaderButtonText {
+    transform: skew(30deg);
+    user-select: none;
+}
+
+#PageHeader {
+    font-family: 'Radiance', sans-serif;
+    padding: 15px 0 0 15px;
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: 0 5px 10px rgba(255,255,255,0.2);
+}
+
+#PageHeaderTitle {
+    color: #eee;
+    font-size: 28pt;
+    font-weight: 700;
+    text-shadow: 2px 2px 5px black;
+}
+
+.RestrictWidth {
+    margin: 0 auto;
+    width: 1150px;
+}
+
+#PageContainer {
+    min-height: 800px;
+}
+
+#PageWrapperBox {
+    background-color: rgba(27, 60, 77, 0.3);
+    padding: 5px;
+    margin-top: 5px;
+    box-shadow: 2px 2px 2px black;
+    border-radius: 2px;
+}
+
+#PageWrapperBox::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+  
+
+#DeckViewer_UploadedDeckDetails {
+    border-radius: 2px;
+    margin-bottom: 10px;
+    width: 100%;
+    min-height: 40px;
+    box-shadow: inset 2px 2px 4px black;
+    background-color: rgba(0,0,0,0.5);
+    color: #bbb;
+    font-family: 'radiance', sans-serif;
+}
+
+.DeckViewer_DeckCodeAndButtonContainer {
+    border-top: 3px solid rgba(27, 60, 77, 0.2);
+    box-shadow: inset 2px 2px 4px black;
+}
+
+.DeckViewer_UploadedDeck_DeckCode {
+    font-size: 11pt;
+    color: #aaa;
+    text-shadow: 1px 1px 1px black;
+    margin-top: 1px;
+    margin-left: 5px;
+    padding: 5px;
+    width: calc(100% - 215px);
+    word-break: break-all;
+    float: left;
+}
+
+.DecksViewer_HeroesContainer {
+    width: 100%;
+    margin: 5px 0 15px 0;
+    min-height: 380px;
+}
+
+.DeckViewer_BottomHalf {
+    width: 100%;
+    min-height: 200px;
+}
+
+.DeckViewer_BottomRight {
+    margin: 0 7px 5px 7px;
+    width: calc(50% - 14px);
+    min-height: 50px;
+    float: left;
+}
+
+.DeckViewer_BottomLeft {
+    margin: 0 7px 5px 7px;
+    width: calc(50% - 14px);
+    min-height: 50px;
+    float: left;
+}
+
+#DeckViewer_MainDeckCardListContainer {
+    width: calc(98% - 12px);
+    margin-bottom: 10px;
+    padding: 6px;
+    box-shadow: inset 2px 2px 6px black;
+    background-color: rgba(0,0,0,0.3);
+    min-height: 645px;
+}
+
+#DeckViewer_ItemCardListContainer {
+    width: calc(98% - 12px);
+    margin-left: 10px;
+    padding: 6px;
+    box-shadow: inset 2px 2px 6px black;
+    background-color: rgba(0,0,0,0.3);
+    min-height: 450px;
+}
+
+#DeckViewer_ColourStatsContainer {
+    margin-top: 10px;
+    height: 100px;
+}
+
+#DeckViewer_ColourBarChartContainer {
+    width: 60%;
+    margin: 0 4%;
+    box-shadow: inset 2px 2px 6px black;
+    padding: 8px 0 8px 2%;
+    background-color: rgb(0,0,0,0.2);
+    float: left;
+    cursor: default;
+}
+
+.DeckViewer_CardList_CardContainer {
+    background-size: 100%;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 2px;
+    box-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    background-position: top right;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+.DeckViewer_CardList_CardContainerI {
+    background: linear-gradient(170deg, rgba(122, 92, 34,0.8) 20%, rgba(102, 76, 28,0.3));
+}
+
+.DeckViewer_CardList_CardContainerU {
+    background-image: url('../images/styles/64BlueT.png'), linear-gradient(170deg, rgba(11,53,78,0.8) 20%, rgba(14,73,105,0.3));
+}
+
+.DeckViewer_CardList_CardContainerG {
+    background-image: url('../images/styles/64GreenT.png'), linear-gradient(170deg, rgba(62,90,50,0.8) 20%, rgba(47,72,36,0.3));
+}
+
+.DeckViewer_CardList_CardContainerR {
+    background-image: url('../images/styles/64RedT.png'), linear-gradient(170deg, rgba(59,8,16,0.8) 20%, rgba(103,14,28,0.3));
+}
+
+.DeckViewer_CardList_CardContainerB {
+    background-image: url('../images/styles/64BlackT.png'), linear-gradient(170deg, rgba(42,41,47,0.8) 20%, rgba(28,27,32,0.3));
+}
+
+#DeckViewer_HeroCard_1 {
+    width: calc(18.5% - 1px);
+    margin: 4px 0.7%;
+}
+
+.DeckViewer_HeroCard {
+    float: left;
+    font-size: 16pt;
+    box-shadow: 2px 2px 10px 1px black;
+    user-select: none;
+    cursor: default;
+}
+
+.DeckViewer_CardList_MiniPicture {
+    width: 45px;
+    height: 45px;
+    float: left;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.CardCentreContainer {
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.CardCentreTopContainer {
+    padding-bottom: 100%;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.CardCentreBottomContainerType1 {
+    padding-bottom: 70%;
+    width: 100%;
+    background-size: 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.DeckViewer_CardList_TypeIcon {
+    width: 22px;
+    margin-left: 3px;
+    height: 22px;
+    float: left;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.DeckViewer_CardList_CardName {
+    width: calc(100% - 190px);
+    padding-left: 5px;
+    font-family: 'Radiance', sans-serif;
+    font-size: 16pt;
+    color: #ddd;
+    text-shadow: 1px 1px 1px black;
+    float: left;
+}
+
+.DeckViewer_CardList_CardQty {
+    width: 39px;
+    color: #ddd;
+    text-shadow: 1px 1px 1px black;
+    font-family: 'Radiance', sans-serif;
+    font-size: 22pt;
+    letter-spacing: -0.03em;
+    float: left;
+}
+
+.DeckViewer_CardList_Cost {
+    font-size: 22pt;
+    line-height: 22pt;
+    text-align: center;
+    width: 36px;
+    margin-left: 2px;
+    font-family: 'Artifact2Numbers', sans-serif;
+    float: left;
+    color: #eee;
+    text-shadow: 1px 1px 2px black;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.DeckViewer_CardList_ManaCost {
+    background-image: url('../images/styles/ManaCrystal.png');
+    background-size: 130%;
+    text-shadow: 2px 2px 2px rgb(13, 5, 54);
+    height: 33px;
+    padding-top: 4px;
+    letter-spacing: -0.1em;
+    width: 32px !important;
+    padding-right: 4px;
+}
+
+
+
+.clear {
+    clear: both;
+}
+
+a {
+    color: inherit;
+}

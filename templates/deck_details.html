@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Artifact Decks</title>
+</head>
+<body>
+    <div id="PageHeader">
+        <div id="PageHeaderTitle" class="RestrictWidth">{{ deck_name }}</div>
+    </div>
+
+    <div id="PageContainer" class="RestrictWidth">
+        <div id="PageWrapperBox">
+            <div id="DeckViewer_UploadedDeckDetails">
+                <div class="DeckViewer_DeckCodeAndButtonContainer">
+                    <div class="DeckViewer_UploadedDeck_DeckCode">
+                        {{ deck_code }}
+                    </div>
+                </div>
+            </div>
+            <div class="Decks_PageInnerBox">
+                <div class="DecksViewer_HeroesContainer">
+                    {% for hero in heroes %}
+                    <div id="DeckViewer_HeroCard_1" class="DeckViewer_HeroCard">
+                        <a href="/?id={{ hero['card_id'] }}">
+                            <div class="CardCentreContainer" style="background-image: url('{{ hero['large_image']['default'] }}')">
+                                <div class="CardCentreTopContainer"></div>
+                                <div class="CardCentreBottomContainerType1"></div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="DeckViewer_BottomHalf"> 
+                    <div class="DeckViewer_BottomLeft">
+                        <div id="DeckViewer_ItemCardListContainer">
+                            {% for item in item_cards %}
+                            <a href="/?={{ item.card_id }}">
+                                <div class="DeckViewer_CardList_CardContainer DeckViewer_CardList_CardContainerI">
+                                    <div class="DeckViewer_CardList_MiniPicture">
+                                        <img src="{{ item.mini_image }}" width="45" height="45">
+                                    </div>
+                                    <div class="DeckViewer_CardList_TypeIcon DeckViewer_CardList_TypeIconArmor"></div>
+                                    <div class="DeckViewer_CardList_Cost DeckViewer_CardList_GoldCost">{{ item.gold_cost }}</div>
+                                    <div class="DeckViewer_CardList_CardName">{{ item.card_name }}</div>
+                                    <div class="DeckViewer_CardList_CardQty">x{{ item.count }}</div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="DeckViewer_BottomRight">
+                        <div id="DeckViewer_MainDeckCardListContainer">
+                            {% for card in cards %}
+                            <a href="/?id={{ card.card_id }}">
+                                <div class="DeckViewer_CardList_CardContainer {{ card.CSSValue }}">
+                                    <div class="DeckViewer_CardList_MiniPicture">
+                                        <img src="{{ card.mini_image }}" width="45" height="45">
+                                    </div>
+                                    <div class="DeckViewer_CardList_TypeIcon DeckViewer_CardList_TypeIconSpell">
+                                        <!-- If you have specific icons for each card type -->
+                                    </div>
+                                    <div class="DeckViewer_CardList_Cost DeckViewer_CardList_ManaCost">{{ card.mana_cost }}</div>
+                                    <div class="DeckViewer_CardList_CardName">
+                                        {{ card.card_name }}
+                                    </div>
+                                    <div class="DeckViewer_CardList_CardQty">x{{ card.count }}</div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
