@@ -1,8 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_file
 from DeckDecoder import DeckDecoder, DeckDecodingException
 from opengraph_gen import create_open_graph_image
 import json
 import binascii
+import io
 
 app = Flask(__name__)
 
@@ -80,6 +81,39 @@ for card in card_list_0:
 @app.route('/')
 def index():
     return render_template('index.html', decks=decks)
+
+@app.route('/deck-preview/<deck_code>')
+def deck_preview(deck_code):
+
+    try :
+        deck = DeckDecoder.decode(deck_code)
+    except DeckDecodingException as e:
+        return "What the actual fuck is this deck?"
+    except binascii.Error as b:
+        return "What the actual fuck is this deck?"    
+    
+    heroes_deck = deck['heroes']
+
+    #Get all heroes in a deck
+    heroes = []
+    for hero in heroes_deck:
+        for card in hero_cards:
+            if hero['card_id'] == card['card_id']:
+                heroes.append(card)
+
+    heroes_images = []
+    for hero in heroes:
+        heroes_images.append(hero['large_image']['default'])
+    
+    img = create_open_graph_image(heroes_images)
+
+    # Save the image to a BytesIO object in memory
+    img_io = io.BytesIO()
+    img_format = 'PNG'  # or 'JPEG', depending on your needs
+    img.save(img_io, img_format)
+    img_io.seek(0)
+
+    return send_file(img_io, mimetype=f'image/{img_format.lower()}')
 
 @app.route('/deck/<deck_code>')
 def deck_detail(deck_code):
