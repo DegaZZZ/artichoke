@@ -104,7 +104,7 @@ def deck_detail(deck_code):
     for hero in heroes:
         heroes_images.append(hero['large_image']['default'])
 
-    create_open_graph_image(heroes_images, f'open_graphs/{deck_code}')
+    create_open_graph_image(heroes_images, f'open_graphs/{deck_code}.jpg')
 
     item_cards_data = []
     for card in cards_deck:
