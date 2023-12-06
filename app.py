@@ -26,6 +26,7 @@ decks = [
     {"id": 14, "author": "Slacks", "code": "ADCJfYOPrgCTAQRgye7AlWIj6UBjYSUgolGngi3Ah+vAVJJWC1ZIEJVSVNORVNT"},
     {"id": 15, "author": "Slacks", "code": "ADCJaIUIbkCSBeCD629AoSHR4GGgoGCE1OjAYJST09NIEZPUiBJTVBST1ZFTUVOVA__"},
     {"id": 16, "author": "Slacks", "code": "ADCJbsPIH2qvAESBkN6uwKckoRTikeNEUEBAQevApeVilRIRSBMT05HIEhBVUwgMg__"},
+    {"id": 31, "author": "Slacks", "code": "ADCJXgSKbkCEhCGdw6tvQKOhIqCk6MBk68BCKYBrgEFU1BSRUFEIFRIRSBESVNFQVNF"},
     {"id": 17, "code": "ADCJcURIH0De7sBKAGQeF1BQWbdAVhHRwFIMQIECG0CTgIfRlBCdQFSZWQtR3JlZW4gQnJhd2xlcg__"},
     {"id": 18, "code": "ADCJSY6NrgCWQyTAy29ApKeQUFDoQOIRCIBgpORlI1Td2ltJmFwb3M7cyA0My1jYXJkIG1vbm9ibHVlICsgR1VJREUgKFdpbm5pbmcgRGVjayBvZiBNV0Mp"},
     {"id": 19, "code": "ADCJcsMNrgCWRCMPQ6muwKrAoGUl4FSQXoCkaMCBYaOUk9MTElOIFNUT1JN"},
