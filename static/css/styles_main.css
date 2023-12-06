@@ -116,3 +116,16 @@
     font-size: 1.2em; /* Smaller font size than the deck name */
     color: #107e78; /* Different color for the author's name */
   }
+
+  .info.colors {
+    display: flex;
+    align-items: center;
+  }
+  
+  .color-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 1px solid #fff; /* Optional: adds a white border around the color dot */
+  }
