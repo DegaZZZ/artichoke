@@ -16,7 +16,7 @@
       <div class="deck" id="deck{{ deck.id }}">
         <div class="deck-header">
           <div class="deck-title">
-            <span class="deck-name">{{ deck.deck_name }}</span>
+            <span class="deck-name">{{ deck.deck_name.replace("&apos;", "'") }}</span>
             {% if deck.author %}
                 <span class="deck-author">by {{ deck.author }}</span>
             {% endif %}
