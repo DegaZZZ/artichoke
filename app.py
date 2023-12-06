@@ -163,7 +163,6 @@ def index():
             elif 'is_green' in hero:
                 colours.append('green')
         colours = list(set(colours))
-        colours = ', '.join(colours)
 
 
 

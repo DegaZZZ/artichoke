@@ -28,7 +28,11 @@
           </div>
         </div>
         <div class="deck-info">
-          <span class="info">Colors: {{ deck.colours }}</span>
+          <div class="info colors">
+            {% for color in deck.colours %}
+              <span class="color-dot" style="background-color: {{ color }};"></span>
+            {% endfor %}
+          </div>
           <span class="info">{{ deck.item_count }} Items</span>
         </div>
       </div>
