@@ -155,13 +155,13 @@ def index():
         colours = []
         for hero in heroes:
             if 'is_blue' in hero:
-                colours.append('blue')
+                colours.append('#3474c3')
             elif 'is_red' in hero:
-                colours.append('red')
+                colours.append('#d3443c')
             elif 'is_black' in hero:
-                colours.append('black')
+                colours.append('#332c47')
             elif 'is_green' in hero:
-                colours.append('green')
+                colours.append('#479036')
         colours = list(set(colours))
 
 
